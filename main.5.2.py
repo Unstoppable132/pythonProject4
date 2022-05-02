@@ -1,0 +1,13 @@
+import socket
+s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+s.connect(('127.0.0.1',8001))
+file1 = open("hello","w+",encoding= "GBK")
+file1.write("你好啊")
+str1 = file1.readlines()
+file1.close()
+#str = input("要给服务器发什么呀:")
+#s.sendall(str.encode())
+s.sendall(str(str1).encode())
+data = s.recv(1024)
+print(data.decode())
+s.close()
